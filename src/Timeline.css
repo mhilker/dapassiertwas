@@ -1,0 +1,53 @@
+.timeline-container {
+    margin: 1rem;
+}
+
+.timeline {
+
+}
+
+.timeline-item {
+    fill: black;
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.timeline-item--command {
+    fill: dodgerblue;
+}
+
+.timeline-item--event {
+    fill: orange;
+}
+
+.timeline-item--text {
+    fill: black;
+    font-size: 0.5rem;
+}
+
+.timeline-axis {
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.timeline-bar {
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.timeline-bar-text {
+    fill: black;
+    user-select: none
+}
+
+.timeline-brush-bar {
+    stroke: red;
+    stroke-width: 0.25rem;
+    pointer-events: none;
+}
+
+.timeline-brush {
+    fill: red;
+    fill-opacity: 0.25;
+    pointer-events: none;
+}
