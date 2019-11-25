@@ -4,13 +4,17 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
-    "flow-bin": "^0.108.0",
-    "flow-typed": "^2.6.1",
-    "react": "^16.9.0",
+    "flow-bin": "^0.112.0",
+    "flow-typed": "^2.6.2",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.27",
+    "node-sass": "^4.13.0",
+    "react": "^16.12.0",
     "react-d3gantt": "^1.0.4",
-    "react-dom": "^16.9.0",
-    "react-router-dom": "^5.0.1",
-    "react-scripts": "3.1.2"
+    "react-datetime": "^2.16.3",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

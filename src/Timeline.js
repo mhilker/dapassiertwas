@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import './Timeline.css';
+import './Timeline.scss';
 import type { Event } from './Events';
 
 const classNames = require('classnames');
@@ -106,7 +106,9 @@ export default class TimelineContainer extends React.Component<TimelineContainer
       pressed: false,
     }, () => {
       const brush = this.normalizeBrush(this.state.brush);
-      this.props.onChangeTimeRange(brush);
+      if (brush.start && brush.end) {
+        this.props.onChangeTimeRange(brush);
+      }
     });
   };
 
@@ -124,9 +126,10 @@ export default class TimelineContainer extends React.Component<TimelineContainer
     if (brush && brush.start && brush.end && brush.start.getTime() > brush.end.getTime()) {
       return {
         start: this.state.brush.end,
-        end: this.state.brush.start
+        end: this.state.brush.start,
       };
     }
+
     return brush;
   }
 }
@@ -154,10 +157,10 @@ function Timeline(props: TimelineProps) {
 
 function TimelineAxis() {
   return (
-    <React.Fragment>
+    <>
       <line x1="0" y1={viewBox.height * 0.90} x2={viewBox.width} y2={viewBox.height * 0.9} className="timeline-axis" />
       <line x1="0" y1="0" x2="0" y2={viewBox.height * 0.9} className="timeline-axis" />
-    </React.Fragment>
+    </>
   );
 }
 
@@ -183,7 +186,7 @@ function TimelineBrush(props: TimelineBrushProps) {
   }
 
   return (
-    <React.Fragment>
+    <>
       {props.brush.start && props.brush.end && (
         <rect x={start * viewBox.width} y="0" width={end * viewBox.width - start * viewBox.width} height={viewBox.height * 0.9} className="timeline-brush"/>
       )}
@@ -193,7 +196,7 @@ function TimelineBrush(props: TimelineBrushProps) {
       {props.brush.end && (
         <line x1={end * viewBox.width} y1="0" x2={end * viewBox.width} y2={viewBox.height * 0.9} className="timeline-brush-bar"/>
       )}
-    </React.Fragment>
+    </>
   );
 }
 

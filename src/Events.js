@@ -19,13 +19,13 @@ function compare(a: Event, b: Event): number {
 
 export const events: Event[] = [
   {
-    id: 'a93ab5d4-0b9f-453a-80cd-e20d61140db4',
+    id: '66dad68c-c462-4bef-a9a3-8aaa1f344b9d',
     occurred: new Date(Date.parse('2019-09-10T14:00:00')),
     type: 'command',
     topic: 'com.example.command_1',
     aggregateId: 'a64d53ce-c53f-4fdc-9d3f-03f07b754b2c',
-    causationId: 'a93ab5d4-0b9f-453a-80cd-e20d61140db4',
-    correlationId: 'a93ab5d4-0b9f-453a-80cd-e20d61140db4',
+    causationId: '66dad68c-c462-4bef-a9a3-8aaa1f344b9d',
+    correlationId: '66dad68c-c462-4bef-a9a3-8aaa1f344b9d',
     payload: {},
   },
   {
@@ -34,7 +34,7 @@ export const events: Event[] = [
     type: 'event',
     topic: 'com.example.event_1',
     aggregateId: 'a64d53ce-c53f-4fdc-9d3f-03f07b754b2c',
-    causationId: 'a93ab5d4-0b9f-453a-80cd-e20d61140db4',
+    causationId: '66dad68c-c462-4bef-a9a3-8aaa1f344b9d',
     correlationId: '66dad68c-c462-4bef-a9a3-8aaa1f344b9d',
     payload: {},
   },

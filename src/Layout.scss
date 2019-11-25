@@ -1,0 +1,17 @@
+.header {
+  margin: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-title {
+  margin-right: 2rem;
+}
+
+.navigation {
+  flex-grow: 1;
+}
+
+.navigation-item {
+  margin: 0.5rem;
+}

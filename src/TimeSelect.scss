@@ -1,0 +1,33 @@
+.time-select {
+  display: flex;
+
+  .rdtPicker {
+    position: unset;
+    margin-top: 1rem;
+  }
+
+}
+
+.time-start {
+  margin-right: 1rem;
+
+  .form-control {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 4px;
+    margin: 0;
+    border: 1px solid #000000;
+  }
+}
+
+.time-end {
+  .form-control {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 4px;
+    margin: 0;
+    border: 1px solid #000000;
+  }
+}
+
+

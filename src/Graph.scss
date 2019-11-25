@@ -1,0 +1,19 @@
+.graph-container {
+    margin: 1rem;
+}
+
+.graph {
+
+}
+
+.graph-node {
+    stroke: black;
+    stroke-width: 1px;
+}
+.graph-node--command {
+    fill: dodgerblue;
+}
+
+.graph-node--event {
+    fill: orange;
+}

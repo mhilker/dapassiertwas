@@ -1,0 +1,38 @@
+.list-container {
+    margin: 1rem;
+}
+
+.list {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.list-head-row {
+
+}
+
+.list-head-cell {
+    font-weight: bold;
+    text-align: left;
+}
+
+.list-row {
+    margin: 0 0 1rem 0;
+}
+
+.list-row-cell {
+    border-top: 1px solid #efefef;
+    padding: 4px 2px 4px 2px;
+}
+
+.list-row-payload {
+    display: none;
+    font-family: monospace;
+    white-space: pre;
+
+    &--visible {
+        display: table-row;
+    }
+}
+

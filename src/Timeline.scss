@@ -7,47 +7,47 @@
 }
 
 .timeline-item {
-    fill: black;
-    stroke: black;
+    fill: #000000;
+    stroke: #000000;
     stroke-width: 1px;
 }
 
 .timeline-item--command {
-    fill: dodgerblue;
+    fill: #1E90FF;
 }
 
 .timeline-item--event {
-    fill: orange;
+    fill: #FFA500;
 }
 
 .timeline-item--text {
-    fill: black;
+    fill: #000000;
     font-size: 0.5rem;
 }
 
 .timeline-axis {
-    stroke: black;
+    stroke: #000000;
     stroke-width: 1px;
 }
 
 .timeline-bar {
-    stroke: black;
+    stroke: #000000;
     stroke-width: 1px;
 }
 
 .timeline-bar-text {
-    fill: black;
+    fill: #000000;
     user-select: none
 }
 
 .timeline-brush-bar {
-    stroke: red;
+    stroke: #FF0000;
     stroke-width: 0.25rem;
     pointer-events: none;
 }
 
 .timeline-brush {
-    fill: red;
+    fill: #FF0000;
     fill-opacity: 0.25;
     pointer-events: none;
 }

@@ -1,88 +1,25 @@
 // @flow
 
 import React from 'react';
-import './App.css';
-import Timeline from './Timeline';
-import { events } from './Events';
-import List from './List';
-import {BrowserRouter as Router, Route, Link, Redirect} from "react-router-dom";
-import type {Match, RouterHistory} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import Dashboard from "./Dashboard";
+import { Header } from "./Layout";
+import './App.scss';
 
-export default function AppRouter() {
+export default function App() {
   return (
     <Router>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-        </ul>
-      </nav>
-      <Route path="/" exact component={RedirectWithTimeRange} />
-      <Route path="/:start/:end" exact component={App} />
+      <Route path="/:start/:end">
+        <Header/>
+      </Route>
+      <Switch>
+        <Route path="/" exact>
+          <Redirect to="/2019-09-10T11:59:55.000Z/2019-09-10T12:00:10.000Z"/>
+        </Route>
+        <Route path="/:start/:end">
+          <Dashboard/>
+        </Route>
+      </Switch>
     </Router>
-  );
-}
-
-function RedirectWithTimeRange() {
-  return (
-    <Redirect to="/2019-09-10T13:59:55/2019-09-10T14:00:10"/>
-  );
-}
-
-type AppProps = {
-  match: Match,
-  history: RouterHistory,
-};
-
-type AppState = {
-};
-
-class App extends React.Component<AppProps, AppState> {
-  onChangeTimeRange = (range: Range) => {
-    this.setState({
-      range: range,
-    });
-
-    this.props.history.push({
-      pathname: `/${range.start.toISOString()}/${range.end.toISOString()}`,
-    })
-  };
-
-  render() {
-    const range = {
-      start: new Date(Date.parse(this.props.match.params.start)),
-      end: new Date(Date.parse(this.props.match.params.end)),
-    };
-    const filteredEvents = events.filter((event) => event.occurred >= range.start && event.occurred <= range.end);
-
-    return (
-      <Page
-        events={filteredEvents}
-        range={range}
-        onChangeTimeRange={this.onChangeTimeRange}
-      />
-    );
-  }
-}
-
-type PageProps = {
-  onChangeTimeRange: (range: Range) => void,
-  events: Event[],
-  range: Range,
-};
-
-function Page(props: PageProps) {
-  return (
-    <React.Fragment>
-      <Timeline
-        events={props.events}
-        range={props.range}
-        onChangeTimeRange={props.onChangeTimeRange}
-      />
-      <List
-        events={props.events}
-      />
-    </React.Fragment>
   );
 }
