@@ -1,15 +1,13 @@
 // @flow
 
-type ID = string;
-
 export type Event = {
-  id: ID,
+  id: string,
   occurred: Date,
   type: string,
   topic: string,
-  aggregateId: ID,
-  causationId: ID,
-  correlationId: ID,
+  aggregateId: string,
+  causationId: string,
+  correlationId: string,
   payload: {},
 };
 

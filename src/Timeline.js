@@ -2,7 +2,7 @@
 
 import React from 'react';
 import './Timeline.scss';
-import type { Event } from './Events';
+import type {Bucket} from "./API";
 
 const classNames = require('classnames');
 
@@ -24,7 +24,7 @@ const viewBox = {
 };
 
 type TimelineContainerProps = {
-  events: Event[],
+  buckets: Bucket[],
   range: Range,
   onChangeTimeRange: (range: Range) => void,
 };
@@ -135,19 +135,21 @@ export default class TimelineContainer extends React.Component<TimelineContainer
 }
 
 type TimelineProps = {
-  events: Event[],
+  buckets: Bucket[],
   range: Range,
   brush: ?Brush,
 };
 
 function Timeline(props: TimelineProps) {
+  const max = props.buckets.reduce((prev, bucket) => bucket.count > prev ? bucket.count : prev , 0);
+
   return (
       <svg className="timeline" preserveAspectRatio="xMinYMin meet" viewBox={viewBox.minX + " " + viewBox.minY + " " + viewBox.width + " " + viewBox.height} >
         <TimelineAxis/>
         <TimelineBars count={7} range={props.range}/>
 
-        {props.events.map(event => (
-          <TimelineItem key={event.id} event={event} range={props.range}/>
+        {props.buckets.map(bucket => (
+          <TimelineItem key={bucket.id} bucket={bucket} max={max} range={props.range}/>
         ))}
 
         <TimelineBrush range={props.range} brush={props.brush}/>
@@ -201,22 +203,29 @@ function TimelineBrush(props: TimelineBrushProps) {
 }
 
 type TimelineItemProps = {
-  event: Event,
+  bucket: Bucket,
   range: Range,
+  max: number,
 };
 
 function TimelineItem(props: TimelineItemProps) {
   const classes = classNames({
     'timeline-item': true,
-    'timeline-item--command': props.event.type === 'command',
-    'timeline-item--event': props.event.type === 'event',
+    //'timeline-item--command': props.bucket.type === 'command',
+    //'timeline-item--event': props.bucket.type === 'event',
+    'timeline-item--event': true,
   });
 
   const range = (props.range.end.getTime() - props.range.start.getTime());
-  const x     = (props.event.occurred.getTime() - props.range.start.getTime()) / range * viewBox.width;
+
+  const width  = "1rem";
+  const height = viewBox.height * 0.9 * props.bucket.count / props.max;
+
+  const y = viewBox.height * 0.9 - height;
+  const x = (props.bucket.date.getTime() - props.range.start.getTime()) / range * viewBox.width;
 
   return (
-      <rect x={x} y="0" width="1rem" height={viewBox.height * 0.9} className={classes}/>
+    <rect x={x} y={y} width={width} height={height} className={classes}/>
   );
 }
 

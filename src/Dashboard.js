@@ -1,11 +1,13 @@
 // @flow
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from "react-router-dom";
 import { events } from "./Events";
 import Filter from "./Filter";
 import Timeline from "./Timeline";
 import List from "./List";
+import {loadBuckets, loadHistory} from './API';
+import type {Bucket} from "./API";
 
 export default function Dashboard () {
   const history = useHistory();
@@ -15,17 +17,47 @@ export default function Dashboard () {
     });
   }
 
+  const [events, setEvents] = useState(null);
+  useEffect(() => {
+    async function doLoadHistory(status) {
+      const result = await loadHistory({});
+      const filteredEvents = result.events.filter((event) => event.occurred >= range.start && event.occurred <= range.end);
+      setEvents(filteredEvents);
+    }
+    if (events === null) {
+      doLoadHistory();
+    }
+  }, [events]);
+
+  const [buckets, setBuckets] = useState(null);
+  useEffect(() => {
+    async function doLoadBuckets(status) {
+      const result = await loadBuckets({});
+      setBuckets(result.buckets);
+    }
+    if (buckets === null) {
+      doLoadBuckets();
+    }
+  }, [buckets]);
+
   const { start, end } = useParams();
   const range = {
     start: new Date(Date.parse(start)),
     end: new Date(Date.parse(end)),
   };
 
-  const filteredEvents = events.filter((event) => event.occurred >= range.start && event.occurred <= range.end);
+  if (events === null || buckets === null) {
+    return (
+      <div>
+        Loading...
+      </div>
+    );
+  }
 
   return (
     <DashboardPage
-      events={filteredEvents}
+      events={events}
+      buckets={buckets}
       range={range}
       onChangeTimeRange={onChangeTimeRange}
     />
@@ -35,6 +67,7 @@ export default function Dashboard () {
 type DashboardPageProps = {
   onChangeTimeRange: (range: Range) => void,
   events: Event[],
+  buckets: Bucket[],
   range: Range,
 };
 
@@ -43,7 +76,7 @@ function DashboardPage(props: DashboardPageProps) {
     <>
       <Filter/>
       <Timeline
-        events={props.events}
+        buckets={props.buckets}
         range={props.range}
         onChangeTimeRange={props.onChangeTimeRange}
       />

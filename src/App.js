@@ -14,7 +14,7 @@ export default function App() {
       </Route>
       <Switch>
         <Route path="/" exact>
-          <Redirect to="/2019-09-10T11:59:55.000Z/2019-09-10T12:00:10.000Z"/>
+          <Redirect to="/2020-01-01T00:00:00.000Z/2020-12-31T23:59:59.999Z"/>
         </Route>
         <Route path="/:start/:end">
           <Dashboard/>
