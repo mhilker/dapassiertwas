@@ -5,7 +5,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "flow-bin": "^0.112.0",
-    "flow-typed": "^2.6.2",
+    "flow-typed": "^3.8.0",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27",
     "node-sass": "^4.13.1",
